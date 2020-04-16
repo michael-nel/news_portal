@@ -1,9 +1,13 @@
-var app = require('./src/config/server');
+const app = require('./src/config/server');
+const consign = require('consign')
+const db = require('./src/config/db')
+
+app.db = db
 
 //Routes
-require('./src/routes/news')(app);
-require('./src/routes/home')(app);
-require('./src/routes/form_add')(app);
+consign()
+  .then('./src/routes')
+  .into(app)
 
 //Up Server
 app.listen(3000, () => {
