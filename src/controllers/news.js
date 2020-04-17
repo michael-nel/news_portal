@@ -13,6 +13,15 @@ module.exports.index = function (app, req, res) {
   });
 }
 
+module.exports.show = function (app, req, res) {
+  const newsModel = new app.src.models.newsModel(app);
+  const value = req.params;
+  newsModel.getNew(value, response => {
+    res.render("news/new", {
+      news: response
+    })
+  })
+}
 module.exports.store = function (app, req, res) {
   const newsModel = new app.src.models.newsModel(app);
   // Validations

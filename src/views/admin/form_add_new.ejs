@@ -1,41 +1,104 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="pt-br">
 
 <head>
-	<meta charset="utf-8" />
-	<title>News registration form </title>
+	<meta charset="UTF-8">
+
+	<title>Portal of News</title>
+
+	<!-- JQuery -->
+	<script src="js/jquery-2.2.1.js"></script>
+
+	<!-- bootstrap - link cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- incluindo css -->
+	<link href="css/style.css" rel="stylesheet">
+
+	<!-- favicon -->
+	<link rel="shortcut icon" href="images/favicon.ico" />
 </head>
 
 <body>
 
-	<h1>Add New</h1>
-	<br />
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 
-	<% if( typeof validation != 'undefined') { %>
-	<ul>
-		<% validation.forEach(items => { %>
-		<li><%= items.msg %> </li>
-		<%}) %>
-	</ul>
-	<% } %>
-	<form action="/news/add" method="post">
-		<label>Title</label>
-		<input type="text" id="title" name="title" value="<%=news.title %>" placeholder="News Title" />
-		<br />
-		<label>Resume</label>
-		<input type="text" id="resume" name="resume" value="<%=news.resume %>" placeholder="News Resume" />
-		<br />
-		<label>Author Name</label>
-		<input type="text" id="author" name="author" value="<%=news.author %>" placeholder="Author Name" />
-		<br />
-		<label>Date News</label>
-		<input type="date" id="date_news" name="date_news" value="<%=news.date_news %>" placeholder="News Date" />
-		<br />
-		<label>News</label>
-		<textarea id="new" name="new" rows="5" cols="30"><%=news.new %></textarea>
-		<br />
-		<input type="submit" value="Add" />
-	</form>
+				<img src="images/logo.png" />
+			</div>
+
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">HOME</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container">
+
+		<% if(typeof validation !== 'undefined' && validation.length > 0) { %>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-danger">
+					<strong>Attention!</strong>
+					<ul>
+						<% validation.forEach( item => { %>
+						<li><%= item.msg %></li>
+						<% }) %>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<% } %>
+
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post" action="/add">
+					<div class="form-group">
+						<label for="titulo">Title:</label>
+						<input type="text" class="form-control" id="title" name="title">
+					</div>
+
+					<div class="form-group">
+						<label for="pwd">Resume:</label>
+						<input type="text" class="form-control" id="resume" name="resume">
+					</div>
+
+					<div class="form-group">
+						<label for="pwd">Author:</label>
+						<input type="text" class="form-control" id="author" name="author">
+					</div>
+
+					<div class="form-group">
+						<label for="pwd">Date:</label>
+						<input type="date" class="form-control" id="date_news" name="date_news">
+					</div>
+
+					<div class="form-group">
+						<label for="pwd">News:</label>
+						<textarea class="form-control" id="new" name="new"></textarea>
+					</div>
+
+					<button type="submit" class="btn btn-default">Add</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+	</script>
 
 </body>
 
