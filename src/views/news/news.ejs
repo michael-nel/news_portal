@@ -10,6 +10,21 @@
 
 	<h1>News</h1>
 
+	<table>
+		<tr>
+			<td>#</td>
+			<td>Title</td>
+			<td>New</td>
+		</tr>
+		<% news.forEach( item => { %>
+		<tr>
+			<td><%= item.id %></td>
+			<td><%= item.title %></td>
+			<td><%= item.new %></td>
+		</tr>
+		<% }) %>
+	</table>
+
 </body>
 
 </html>

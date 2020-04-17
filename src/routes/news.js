@@ -1,5 +1,12 @@
 module.exports = app => {
+
   app.get('/news', (req, res) => {
-    res.render('news/news');
+    app.db('news')
+      .then(response => {
+        res.render('news/news', {
+          news: response
+        });
+      })
+      .catch(err => res.status(500).send(err));
   });
 }
