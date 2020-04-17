@@ -11,5 +11,9 @@ app.use(
   })
 );
 app.use(expressValidator());
-consign().then("./src/routes").then("./src/models").into(app);
+consign()
+  .then("./src/routes")
+  .then("./src/models")
+  .then('./src/controllers')
+  .into(app);
 module.exports = app;

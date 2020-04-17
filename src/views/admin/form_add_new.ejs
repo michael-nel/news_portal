@@ -10,12 +10,29 @@
 
 	<h1>Add New</h1>
 	<br />
+
+	<% if( typeof validation != 'undefined') { %>
+	<ul>
+		<% validation.forEach(items => { %>
+		<li><%= items.msg %> </li>
+		<%}) %>
+	</ul>
+	<% } %>
 	<form action="/news/add" method="post">
 		<label>Title</label>
-		<input type="text" id="title" name="title" placeholder="New Title" />
+		<input type="text" id="title" name="title" value="<%=news.title %>" placeholder="News Title" />
 		<br />
-		<label>New</label>
-		<textarea id="new" name="new" rows="5" cols="30"></textarea>
+		<label>Resume</label>
+		<input type="text" id="resume" name="resume" value="<%=news.resume %>" placeholder="News Resume" />
+		<br />
+		<label>Author Name</label>
+		<input type="text" id="author" name="author" value="<%=news.author %>" placeholder="Author Name" />
+		<br />
+		<label>Date News</label>
+		<input type="date" id="date_news" name="date_news" value="<%=news.date_news %>" placeholder="News Date" />
+		<br />
+		<label>News</label>
+		<textarea id="new" name="new" rows="5" cols="30"><%=news.new %></textarea>
 		<br />
 		<input type="submit" value="Add" />
 	</form>

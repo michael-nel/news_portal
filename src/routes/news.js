@@ -1,22 +1,14 @@
 module.exports = (app) => {
-  // Get All
+
   app.get("/news", (req, res) => {
-    const newsModel = new app.src.models.newsModel(app);
-    newsModel.getNews(response => {
-      res.render("news/news", {
-        news: response,
-      });
-    });
+    app.src.controllers.news.index(app, req, res);
   });
 
   app.get("/news/add", (req, res) => {
-    res.render("admin/form_add_new");
+    app.src.controllers.news.form_add(app, req, res);
   });
 
   app.post("/news/add", (req, res) => {
-    const newsModel = new app.src.models.newsModel(app.db);
-    newsModel.saveNews(req.body, response => {
-      res.redirect("/news");
-    });
+    app.src.controllers.news.store(app, req, res);
   });
 };
