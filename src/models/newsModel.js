@@ -1,17 +1,20 @@
-module.exports = (app) => {
-  const getNews = (callback) => {
-    app
-      .db("news")
-      .then(callback)
-      .catch((err) => res.status(500).send(err));
-  };
+function News(app) {
+  this._app = app;
+}
 
-  const saveNews = (value, callback) => {
-    app
-      .db("news")
-      .insert(value)
-      .then(callback)
-      .catch((err) => res.status(500).send(err));
-  };
-  return { getNews, saveNews };
-};
+News.prototype.getNews = function (callback) {
+  this._app
+    .db("news")
+    .then(callback)
+    .catch((err) => res.status(500).send(err));
+}
+
+News.prototype.saveNews = function (value, callback) {
+  this._app
+    .db("news")
+    .insert(value)
+    .then(callback)
+    .catch((err) => res.status(500).send(err));
+}
+
+module.exports = () => News

@@ -1,8 +1,8 @@
 module.exports = (app) => {
   // Get All
   app.get("/news", (req, res) => {
-    const newsModel = app.src.models.newsModel;
-    newsModel.getNews((response) => {
+    const newsModel = new app.src.models.newsModel(app);
+    newsModel.getNews(response => {
       res.render("news/news", {
         news: response,
       });
@@ -14,11 +14,9 @@ module.exports = (app) => {
   });
 
   app.post("/news/add", (req, res) => {
-    const newsModel = app.src.models.newsModel;
-    newsModel.saveNews(req.body, (response) => {
-      res.render("news/news", {
-        news: response,
-      });
+    const newsModel = new app.src.models.newsModel(app.db);
+    newsModel.saveNews(req.body, response => {
+      res.redirect("/news");
     });
   });
 };
